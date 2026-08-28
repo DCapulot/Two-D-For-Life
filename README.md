@@ -6,13 +6,7 @@ O **Two D For Life (TDFL)** é um website interativo desenvolvido para calcular 
 
 Além do cálculo, o site também fornece informações educativas sobre o IMC, ajudando o usuário a entender melhor sua condição física e a importância de manter hábitos saudáveis.
 
----
-## Demonstração
 
-https://david-capulot-correa.github.io/Two-D-For-Life/
-
-
----
 
 ## 🚀 Funcionalidades
 
