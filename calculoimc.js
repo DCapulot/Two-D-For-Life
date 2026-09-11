@@ -1,154 +1,84 @@
-// calculoimc.js - Two D for Life (TDFL)
-// Calcula o IMC, classifica o resultado e guarda um pequeno histórico local.
+// Alternar a barra lateral de navegação
+function toggleMenu() {
+  const sidebar = document.getElementById("sidebarPesquisa");
+  const overlay = document.getElementById("overlayMenu");
+  
+  sidebar.classList.toggle("ativo");
+  overlay.classList.toggle("ativo");
+}
 
-const CHAVE_HISTORICO = "tdfl-historico-imc";
-
+// Função de cálculo do IMC
 function calcularIMC() {
-	const nome = document.getElementById("p1").value.trim();
-	const dataNascimento = document.getElementById("p3").value;
-	const alturaCm = parseFloat(document.getElementById("p4").value);
-	const pesoKg = parseFloat(document.getElementById("p5").value);
+  const nome = document.getElementById("p1").value;
+  const alturaCm = parseFloat(document.getElementById("p4").value);
+  const peso = parseFloat(document.getElementById("p5").value);
+  const divResultado = document.getElementById("resultado");
+  const areaEscala = document.getElementById("area-escala");
+  const marcador = document.getElementById("marcador-imc");
 
-	if (!nome || !dataNascimento || isNaN(alturaCm) || isNaN(pesoKg) || alturaCm <= 0 || pesoKg <= 0) {
-		alert("Por favor, preencha todos os campos corretamente (nome, data de nascimento, altura e peso).");
-		return;
-	}
+  if (!nome || isNaN(alturaCm) || isNaN(peso) || alturaCm <= 0 || peso <= 0) {
+    divResultado.innerText = "Por favor, preencha todos os campos corretamente.";
+    divResultado.style.display = "block";
+    return;
+  }
 
-	// === Calcular idade ===
-	const hoje = new Date();
-	const nascimento = new Date(dataNascimento);
+  const alturaM = alturaCm / 100;
+  const imc = (peso / (alturaM * alturaM)).toFixed(2);
 
-	if (nascimento > hoje) {
-		alert("A data de nascimento não pode ser no futuro.");
-		return;
-	}
+  let classificacao = "";
+  let percentualEscala = 0;
 
-	let idade = hoje.getFullYear() - nascimento.getFullYear();
-	const mes = hoje.getMonth() - nascimento.getMonth();
-	if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-		idade--;
-	}
+  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+    percentualEscala = 10;
+  } else if (imc >= 18.5 && imc <= 24.9) {
+    classificacao = "Peso normal";
+    percentualEscala = 35;
+  } else if (imc >= 25 && imc <= 29.9) {
+    classificacao = "Excesso de peso";
+    percentualEscala = 60;
+  } else if (imc >= 30 && imc <= 34.9) {
+    classificacao = "Obesidade Grau 1";
+    percentualEscala = 80;
+  } else if (imc >= 35 && imc <= 39.9) {
+    classificacao = "Obesidade Grau 2";
+    percentualEscala = 90;
+  } else {
+    classificacao = "Obesidade Grau 3";
+    percentualEscala = 98;
+  }
 
-	// === Calcular IMC ===
-	const alturaM = alturaCm / 100;
-	const imc = pesoKg / (alturaM * alturaM);
+  divResultado.innerHTML = `Olá, <strong>${nome}</strong>! Seu IMC é <strong>${imc}</strong> (${classificacao}).`;
+  divResultado.style.display = "block";
 
-	// === Classificação do IMC ===
-	const classificacao = classificarIMC(imc);
+  areaEscala.classList.add("mostrar");
+  marcador.style.left = `${percentualEscala}%`;
 
-	// === Atualizar texto no resultado ===
-	const resultado = document.getElementById("resultado");
-	resultado.innerHTML = `
-		<p>${escapeHTML(nome)}, você tem <strong>${idade} anos</strong>.</p>
-		<p>Seu IMC é <strong>${imc.toFixed(2)}</strong>.</p>
-		<p>Classificação: <strong>${classificacao}</strong></p>
-		${idade < 18 ? "<p style='color:#8a1c1c'><strong>Atenção:</strong> o IMC pode não ser o melhor indicador para menores de idade.</p>" : ""}
-	`;
-
-	// === Mover marcador na barra de escala ===
-	moverMarcador(imc);
-
-	// === Salvar no histórico local (localStorage) ===
-	salvarNoHistorico({ nome, idade, imc: imc.toFixed(2), classificacao, data: hoje.toLocaleDateString("pt-BR") });
-}
-
-function classificarIMC(imc) {
-	if (imc < 18.5) return "Abaixo do peso";
-	if (imc < 25) return "Peso normal";
-	if (imc < 30) return "Excesso de peso";
-	if (imc < 35) return "Obesidade grau 1";
-	if (imc < 40) return "Obesidade grau 2";
-	return "Obesidade grau 3 (mórbida)";
-}
-
-// Move o marcador ao longo da barra colorida, de acordo com o IMC.
-// Faixa considerada: de 12 (bem abaixo do peso) até 45 (bem acima), limitada a 0-100%.
-function moverMarcador(imc) {
-	const area = document.getElementById("area-escala");
-	const marcador = document.getElementById("marcador-imc");
-	if (!area || !marcador) return;
-
-	const IMC_MIN = 12;
-	const IMC_MAX = 45;
-	let percentual = ((imc - IMC_MIN) / (IMC_MAX - IMC_MIN)) * 100;
-	percentual = Math.max(0, Math.min(100, percentual));
-
-	area.classList.add("mostrar");
-	marcador.style.left = percentual + "%";
+  salvarHistorico(nome, imc, classificacao);
 }
 
 function limparFormulario() {
-	document.getElementById("formIMC").reset();
-	document.getElementById("resultado").innerHTML = "";
-	document.getElementById("area-escala").classList.remove("mostrar");
+  document.getElementById("formIMC").reset();
+  document.getElementById("resultado").innerText = "";
+  document.getElementById("resultado").style.display = "none";
+  document.getElementById("area-escala").classList.remove("mostrar");
 }
 
-// === Histórico local (funciona offline, guardado no próprio navegador) ===
-function salvarNoHistorico(registro) {
-	const historico = obterHistorico();
-	historico.unshift(registro);
-	const limitado = historico.slice(0, 5); // guarda só os 5 últimos
+function salvarHistorico(nome, imc, classificacao) {
+  const historicoSecao = document.getElementById("historico-secao");
+  const listaHistorico = document.getElementById("lista-historico");
 
-	try {
-		localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(limitado));
-	} catch (erro) {
-		console.warn("Não foi possível salvar o histórico localmente:", erro);
-	}
+  historicoSecao.hidden = false;
 
-	renderizarHistorico();
-}
-
-function obterHistorico() {
-	try {
-		const dados = localStorage.getItem(CHAVE_HISTORICO);
-		return dados ? JSON.parse(dados) : [];
-	} catch (erro) {
-		return [];
-	}
-}
-
-function renderizarHistorico() {
-	const historico = obterHistorico();
-	const secao = document.getElementById("historico-secao");
-	const lista = document.getElementById("lista-historico");
-	if (!secao || !lista) return;
-
-	if (historico.length === 0) {
-		secao.hidden = true;
-		return;
-	}
-
-	secao.hidden = false;
-	lista.innerHTML = historico
-		.map(
-			(item) =>
-				`<li>${item.data} — ${escapeHTML(item.nome)}: IMC ${item.imc} (${item.classificacao})</li>`
-		)
-		.join("");
+  const li = document.createElement("li");
+  li.innerText = `${nome}: IMC ${imc} (${classificacao})`;
+  listaHistorico.appendChild(li);
 }
 
 function limparHistorico() {
-	localStorage.removeItem(CHAVE_HISTORICO);
-	renderizarHistorico();
+  const listaHistorico = document.getElementById("lista-historico");
+  const historicoSecao = document.getElementById("historico-secao");
+
+  listaHistorico.innerHTML = "";
+  historicoSecao.hidden = true;
 }
-
-// Evita que texto digitado pelo usuário quebre o HTML do resultado/histórico
-function escapeHTML(texto) {
-	const div = document.createElement("div");
-	div.textContent = texto;
-	return div.innerHTML;
-}
-
-// === Formulário de feedback (sem back-end: apenas confirma o envio) ===
-document.addEventListener("DOMContentLoaded", () => {
-	renderizarHistorico();
-
-	const formFeedback = document.getElementById("formFeedback");
-	if (formFeedback) {
-		formFeedback.addEventListener("submit", (evento) => {
-			evento.preventDefault();
-			alert("Obrigado pelo seu feedback! (Este formulário é apenas uma demonstração e ainda não envia dados a um servidor.)");
-			formFeedback.reset();
-		});
-	}
-});
