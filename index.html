@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site para calcular seu IMC (Índice de Massa Corporal) de forma simples, rápida e gratuita.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+
+    <!-- PWA: manifest, cor do tema e ícones -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f7cac">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TDFL">
+
+    <title>Two D For Life</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="TwoDForLife">Two D for Life</h1>
+    </header>
+    <main>
+      <!--sinopse do site-->
+      <section class="sinopse">
+        <p>
+          <strong><abbr title="Two D for Life">TDFL</abbr></strong>
+          é um site simples e prático para você descobrir seu
+          <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>
+          em poucos segundos. Aqui você pode calcular se está no peso ideal, entender melhor sua saúde e receber dicas para manter uma vida equilibrada. Nosso objetivo é ajudar você a acompanhar sua evolução e adotar hábitos mais saudáveis de forma fácil, rápida e gratuita. No
+          <strong><abbr title="Two D for Life">TDFL</abbr></strong>,
+          acreditamos que saúde vai além de números: é sobre bem-estar, qualidade de vida e escolhas inteligentes para o futuro.
+        </p>
+      </section>
+
+      <!--conteudo lado a lado-->
+      <section class="lado">
+        <section class="sobe" id="sigimc">
+          <h2>O que é <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>? e suas características</h2>
+          <img class="imc" src="imagem/imc.jpg" alt="Ilustração mostrando as diferentes faixas de peso do IMC, da magreza à obesidade">
+          <p>
+            O <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong> é uma ferramenta simples que relaciona peso e altura para estimar se uma pessoa está em uma faixa considerada saudável.
+            <br>Fazer o cálculo do <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong> pode ser útil porque:
+          </p>
+          <ul>
+            <li>Avalia o estado nutricional: ajuda a identificar se você está abaixo do peso, no peso adequado, com sobrepeso ou obesidade.</li>
+          </ul>
+
+          <table border="1">
+            <caption>Tabela de classificação do IMC</caption>
+            <thead>
+              <tr>
+                <th scope="col">IMC</th>
+                <th scope="col">Classificação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>menos que 18,5</td>
+                <td>abaixo do peso</td>
+              </tr>
+              <tr>
+                <td>18,5 - 24,9</td>
+                <td>peso normal</td>
+              </tr>
+              <tr>
+                <td>25 - 29,9</td>
+                <td>excesso de peso</td>
+              </tr>
+              <tr>
+                <td>30 - 34,9</td>
+                <td>obesidade 1</td>
+              </tr>
+              <tr>
+                <td>35 - 39,9</td>
+                <td>obesidade 2</td>
+              </tr>
+              <tr>
+                <td>40 pra cima</td>
+                <td>obesidade 3</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">isso é considerado para uma pessoa adulta</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <ul>
+            <li>Prevenção de doenças: valores muito baixos ou muito altos estão associados a riscos maiores de problemas de saúde, como desnutrição, hipertensão, diabetes tipo 2 e doenças cardiovasculares.</li>
+            <li>Acompanhamento médico: profissionais de saúde usam o <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong> como um dos critérios para orientar planos alimentares, treinos e tratamentos.</li>
+            <li>Controle pessoal: pode ser uma forma rápida de monitorar mudanças no corpo ao longo do tempo, junto com outros indicadores (como circunferência abdominal e percentual de gordura).</li>
+          </ul>
+
+          <p>
+            <strong><em>
+              É importante lembrar: <abbr title="Índice de Massa Corporal">IMC</abbr> é apenas um indicativo.
+              <br>Ele não diferencia massa magra (músculos) de gordura e nem avalia a distribuição de gordura corporal. Por isso, atletas ou pessoas com muita massa muscular podem ter <abbr title="Índice de Massa Corporal">IMC</abbr> alto sem estarem com excesso de gordura.
+            </em></strong>
+          </p>
+        </section>
+
+        <!--Perguntas rapidas-->
+        <section class="direita">
+          <aside>
+            <nav aria-label="Ajuda na pesquisa">
+              <h2>*Ajuda na pesquisa*</h2>
+              <ul class="direita">
+                <li><a href="#sigimc">O que é <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>? e qual é sua importância?</a></li>
+                <li><a href="#calimc">Quero calcular meu IMC agora</a></li>
+                <li><a href="#sobre">Quer conhecer os desenvolvedores?</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </section>
+      </section>
+
+      <!--calculando o IMC-->
+      <section id="calimc">
+        <h2>Vamos ver hoje como está sua condição física através do <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>?</h2>
+        <details open>
+          <summary>Quero calcular o meu IMC</summary>
+
+          <section>
+            <img class="imgc" src="./imagem/obesidade.jpg" alt="Ilustração representando as diferentes faixas de peso corporal">
+          </section>
+
+          <form id="formIMC">
+            <section>
+              <label for="p1"><em>1. Qual é o seu nome?</em></label>
+              <br>
+              <input type="text" id="p1" name="pergunta1" placeholder="Digite seu nome aqui..." required>
+            </section>
+
+            <section>
+              <fieldset>
+                <legend><em>2. Qual é o seu sexo?</em></legend>
+                <input type="radio" id="p2a" name="pergunta2" value="Homem" checked>
+                <label for="p2a">Homem</label>
+                <br>
+                <input type="radio" id="p2b" name="pergunta2" value="Mulher">
+                <label for="p2b">Mulher</label>
+                <br>
+                <input type="radio" id="p2c" name="pergunta2" value="Não quero declarar">
+                <label for="p2c">Não quero declarar</label>
+              </fieldset>
+            </section>
+
+            <section>
+              <label for="p3"><em>3. Qual o dia do seu nascimento?</em></label>
+              <br>
+              <input type="date" id="p3" name="pergunta3" required>
+            </section>
+
+            <section>
+              <label for="p4"><em>4. Qual é a sua altura?</em></label>
+              <br>
+              <input type="number" id="p4" name="pergunta4" min="1" max="300" step="1" required>
+              <label for="p4">cm</label>
+            </section>
+
+            <section>
+              <label for="p5"><em>5. Qual é o seu peso?</em></label>
+              <br>
+              <input type="number" id="p5" name="pergunta5" min="0.01" max="700" step="0.01" required>
+              <label for="p5">KG</label>
+            </section>
+
+            <section>
+              <button type="button" onclick="calcularIMC()" id="btnCalcularIMC">Calcular IMC</button>
+              <button type="button" onclick="limparFormulario()" id="btnLimpar">Limpar</button>
+            </section>
+          </form>
+
+          <!--Barra visual de resultado do IMC-->
+          <section id="area-escala" aria-hidden="true">
+            <div id="escala-imc">
+              <div id="marcador-imc"></div>
+            </div>
+            <div id="escala-legendas">
+              <span>Abaixo</span>
+              <span>Normal</span>
+              <span>Sobrepeso</span>
+              <span>Obesidade</span>
+            </div>
+          </section>
+
+          <section id="resultado" aria-live="polite"></section>
+
+          <section id="historico-secao" hidden>
+            <h3>Últimos cálculos salvos neste aparelho</h3>
+            <ul id="lista-historico"></ul>
+            <button type="button" onclick="limparHistorico()" id="btnLimparHistorico">Apagar histórico</button>
+          </section>
+        </details>
+      </section>
+
+      <!--sobre nos e nosso trabalho-->
+      <section id="sobre">
+        <h2>Quer conhecer os desenvolvedores?</h2>
+        <details>
+          <summary>Aperte aqui</summary>
+          <figure>
+            <img src="imagem/davidedaniel.jpg" alt="Foto de David e Daniel no laboratório da Anhanguera">
+            <figcaption>Foto de 2025 de David e Daniel no laboratório da Anhanguera</figcaption>
+          </figure>
+          <h3>Desenvolvedores e suas ideias:</h3>
+          <p>
+            O <strong><abbr title="Two D for Life">TDFL</abbr></strong> é um projeto acadêmico desenvolvido por <strong>David Capulot</strong> e <strong>Daniel Holanda de Campos</strong>, estudantes do curso de <em>Ciência da Computação</em> na Anhanguera de Niterói. Este trabalho foi realizado no âmbito da disciplina de <strong>JavaScript</strong>, sob a orientação do professor <strong>Pedro Henrique da Costa Braga</strong>, que contribuiu de forma fundamental para o amadurecimento técnico e acadêmico do projeto.
+          </p>
+          <p>
+            O site tem como missão aproximar a tecnologia do cuidado com a saúde, proporcionando uma ferramenta prática, intuitiva e acessível para o cálculo do <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>. Nosso propósito vai além de apenas apresentar números: buscamos estimular a reflexão sobre a importância do equilíbrio entre corpo e mente, incentivando escolhas conscientes que promovam bem-estar e qualidade de vida.
+          </p>
+          <p>
+            Como visão de futuro, almejamos expandir <strong><abbr title="Two D for Life">TDFL</abbr></strong> para além de uma calculadora de <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>. Entre os planos de evolução estão a implementação de novos recursos, como o cálculo da <em>Taxa Metabólica Basal (TMB)</em>, o acompanhamento histórico dos dados do usuário, relatórios em PDF, gráficos interativos de evolução corporal e até mesmo sugestões personalizadas de hábitos saudáveis. Acreditamos que, com dedicação e inovação, este projeto pode se transformar em uma plataforma ainda mais completa de apoio à saúde.
+          </p>
+          <p>
+            Durante o desenvolvimento, valorizamos princípios como a <strong>inovação</strong>, a <strong>aprendizagem contínua</strong>, a <strong>colaboração</strong> e o <strong>impacto positivo</strong> da tecnologia na sociedade. Mais do que um simples trabalho acadêmico, o <strong><abbr title="Two D for Life">TDFL</abbr></strong> representa nossa capacidade de transformar teoria em prática, criatividade em solução e desafios em conquistas. Este projeto é também um reflexo da nossa paixão pela programação e do desejo de aplicar nossos conhecimentos para criar ferramentas úteis e acessíveis.
+          </p>
+          <p>
+            A experiência de construir este site fortaleceu não apenas nossas habilidades técnicas, como o uso de <strong>HTML e JavaScript</strong>, mas também aspectos importantes do trabalho em equipe, da comunicação de ideias e da disciplina necessária para transformar um conceito em realidade. Cada linha de código representa dedicação, aprendizado e a busca por constante evolução.
+          </p>
+          <p>
+            Agradecemos à <strong><a href="https://www.anhanguera.com/" target="_blank" rel="noopener noreferrer">Anhanguera de Niterói</a></strong> por nos proporcionar a base acadêmica necessária para este projeto, e em especial ao professor <strong>Pedro Henrique da Costa Braga</strong> por sua orientação e incentivo. O <strong><abbr title="Two D for Life">TDFL</abbr></strong> é fruto do esforço conjunto entre teoria, prática e paixão pela área de tecnologia, e reflete nosso compromisso com o desenvolvimento acadêmico, profissional e pessoal.
+          </p>
+        </details>
+      </section>
+
+      <!--feedback-->
+      <section class="feedback">
+        <fieldset>
+          <legend>Informações de Contato</legend>
+          <h3>Deixe seu feedback</h3>
+          <form id="formFeedback">
+            <label for="name6">Qual é o seu nome?</label>
+            <br>
+            <input type="text" id="name6" name="nome6">
+            <br>
+            <label for="email6">Qual é o seu email?</label>
+            <br>
+            <input type="email" id="email6" name="email6">
+            <br>
+            <label for="comentario6">Comentário</label>
+            <br>
+            <textarea name="comentario" id="comentario6" rows="4" cols="50" placeholder="Digite seu comentário aqui"></textarea>
+            <br>
+            <button type="submit" id="btnFeedback">Enviar</button>
+          </form>
+        </fieldset>
+      </section>
+    </main>
+
+    <!--rodape-->
+    <section class="rodape" id="Contatos">
+      <footer>
+        <h3>Contatos dos Desenvolvedores</h3>
+        <p class="rodape">Email: TreDLife@imaginario.com</p>
+        <p class="rodape">Telefone: (21) 1234-5678</p>
+        <p class="rodape">&copy; Todos os direitos reservados</p>
+      </footer>
+    </section>
+
+    <script src="calculoimc.js"></script>
+
+    <!-- PWA: registro do service worker -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./service-worker.js")
+            .then((registro) => {
+              console.log("Service Worker registrado com sucesso:", registro.scope);
+            })
+            .catch((erro) => {
+              console.log("Falha ao registrar o Service Worker:", erro);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
