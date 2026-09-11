@@ -21,6 +21,27 @@
     <title>Two D For Life</title>
   </head>
   <body>
+    <!-- Botão para abrir o menu lateral -->
+    <button type="button" id="btnAbrirMenu" onclick="toggleMenu()" aria-label="Abrir ajuda na pesquisa">
+      🔍 Ajuda
+    </button>
+
+    <!-- Fundo escuro quando a barra estiver aberta -->
+    <div id="overlayMenu" onclick="toggleMenu()"></div>
+
+    <!-- Barra lateral (Sidebar) -->
+    <aside id="sidebarPesquisa" class="sidebar">
+      <button type="button" id="btnFecharMenu" onclick="toggleMenu()" aria-label="Fechar ajuda na pesquisa">✕</button>
+      <nav aria-label="Ajuda na pesquisa">
+        <h2>Ajuda na pesquisa</h2>
+        <ul>
+          <li><a href="#sigimc" onclick="toggleMenu()">O que é IMC? e qual é sua importância?</a></li>
+          <li><a href="#calimc" onclick="toggleMenu()">Quero calcular meu IMC agora</a></li>
+          <li><a href="#sobre" onclick="toggleMenu()">Quer conhecer os desenvolvedores?</a></li>
+        </ul>
+      </nav>
+    </aside>
+
     <header>
       <h1 id="TwoDForLife">Two D for Life</h1>
     </header>
@@ -37,7 +58,7 @@
         </p>
       </section>
 
-      <!--conteudo lado a lado-->
+      <!--conteudo principal-->
       <section class="lado">
         <section class="sobe" id="sigimc">
           <h2>O que é <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>? e suas características</h2>
@@ -103,20 +124,6 @@
               <br>Ele não diferencia massa magra (músculos) de gordura e nem avalia a distribuição de gordura corporal. Por isso, atletas ou pessoas com muita massa muscular podem ter <abbr title="Índice de Massa Corporal">IMC</abbr> alto sem estarem com excesso de gordura.
             </em></strong>
           </p>
-        </section>
-
-        <!--Perguntas rapidas-->
-        <section class="direita">
-          <aside>
-            <nav aria-label="Ajuda na pesquisa">
-              <h2>*Ajuda na pesquisa*</h2>
-              <ul class="direita">
-                <li><a href="#sigimc">O que é <strong><abbr title="Índice de Massa Corporal">IMC</abbr></strong>? e qual é sua importância?</a></li>
-                <li><a href="#calimc">Quero calcular meu IMC agora</a></li>
-                <li><a href="#sobre">Quer conhecer os desenvolvedores?</a></li>
-              </ul>
-            </nav>
-          </aside>
         </section>
       </section>
 
